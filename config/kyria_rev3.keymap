@@ -53,7 +53,7 @@
             bindings = <
                &kp GRAVE &bt BT_CLR  &bt BT_PRV       &bt BT_NXT      &bt BT_SEL 0 &bt BT_DISC 0                &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &trans  &trans  &trans
                &kp TAB &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4 &kp NUMBER_5                             &lt DEFAULT C_RW    &lt NAV C_PP     &kp C_FF      &trans    &trans  &trans
-               &trans  &kp NUMBER_6  &kp NUMBER_7 &kp NUMBER_8   &kp NUMBER_9 &kp NUMBER_0        &tog NAV  &tog DEFAULT  &kp C_BRI_DN  &kp C_BRI_UP  &kp C_BRI_AUTO  &trans  &trans  &trans  &trans  &trans
+               &trans  &kp NUMBER_6  &kp NUMBER_7 &kp NUMBER_8   &kp NUMBER_9 &kp NUMBER_0 &trans &trans       &tog NAV  &tog DEFAULT  &kp C_BRI_DN  &kp C_BRI_UP  &kp C_BRI_AUTO  &trans  &trans  &trans
                        &trans        &trans       &kp LEFT_SHIFT &kp COMMA  &kp DOT  &kp SPACE  &trans  &trans  &trans  &trans
             >;
 
@@ -71,7 +71,7 @@
         bindings = <
         &kp HOME  &bt BT_CLR  &kp PAGE_DOWN  &kp PAGE_UP &bt BT_PRV &bt BT_NXT                                  &kp HOME  &kp PAGE_DOWN  &kp PAGE_UP  &kp END  &trans  &trans
         &trans  &kp LEFT  &kp HOME &kp DOWN &kp RIGHT &kp NUMBER_5                                        &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &trans  &trans
-        &trans  &kp NUMBER_6  &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9 &kp NUMBER_0        &tog FUNC  &tog DEFAULT  &kp C_BRI_DN  &kp C_BRI_UP  &kp C_BRI_AUTO  &trans  &trans  &trans  &trans  &trans
+        &trans  &kp NUMBER_6  &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9 &kp NUMBER_0 &trans &trans   &tog FUNC  &tog DEFAULT  &kp C_BRI_DN  &kp C_BRI_UP  &kp C_BRI_AUTO  &trans  &trans  &trans
         &trans        &trans        &kp LEFT_SHIFT &kp COMMA  &kp DOT  &kp SPACE  &trans  &trans  &trans  &trans
         >;
 
