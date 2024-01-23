@@ -1,0 +1,1 @@
+docker run -it --rm -w /zmk -v "$(pwd)/../":/zmk:Z zmkfirmware/zmk-dev-arm:stable bash -c "west build -p -s /zmk/app -d build/right -b nice_nano_v2 -- -DSHIELD=kyria_rev3_right && west build -p -s /zmk/app -d build/left -b nice_nano_v2 -- -DSHIELD=kyria_rev3_left"
