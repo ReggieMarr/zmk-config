@@ -101,16 +101,17 @@
 
         default_layer {
             // ---------------------------------------------------------------------------------------------------------------------------------
-            // |  ESC  |  Q  |  W  |  E   |  R   |  T   |                                          |  Y   |  U    |  I    |  O   |   P   |   \  |
-            // |  TAB  |  A  |  S  |  D   |  F   |  G   |                                          |  H   |  J    |  K    |  L   |   ;   |   '  |
-            // | SHIFT |  Z  |  X  |  C   |  V   |  B   | L SHIFT | L SHIFT |  | LAYER 1 | L SHIFT |  N   |  M    |  ,    |  .   |   /   | CTRL |
-            //                     | GUI  | DEL  | RET  |  SPACE  |   ESC   |  |   RET   |  SPACE  | TAB  | BSPC  | R-ALT |
+            // | GRAVE |  Q  |  W  |  E   |  R   |  T   |                                          |  Y   |  U    |  I    |  O   |  P   |   \   |
+            // | CTRL+TAB |  A  |  S  |  D   |  F   |  G   |                                          |  H(LHold)   |  J(Dhold) |  K(Uhold) |  L(RHold)   |   ;   |   '   |
+            // | MINUS |  Z  |  X  |  C   |  V   |  B   | TRANS | CTRL | TRANS | LAYER 1     |  N   |  M    |  ,    |  .   |   /   | EQUAL |
+            //                     | MUTE | CTRL/GUI | L_SHIFT+[ |SPACE | L_ALT+ESC | TD_LAYER |   DEL   |   ]   | FUNC+BSPC  | HOME |
+
 
             bindings = <
-            &grave_tog  &kp Q  &kp W  &kp E &kp R &kp T                                                                  &kp Y              &kp U     &kp I      &kp O    &kp P     &kp BSLH
-            &mt LEFT_CONTROL TAB    &kp A  &kp S  &kp D &kp F &kp G                                                                  &h_left &j_down &k_up &l_right &kp SEMI  &kp SQT
-            &kp MINUS  &kp Z  &kp X  &kp C &kp V &kp B  &trans   &kp RIGHT_CONTROL  &trans &sl_tog &kp N             &kp M     &kp COMMA  &kp DOT  &kp FSLH  &kp EQUAL
-                       &kp C_MUTE  &ctrl_gui &mt LEFT_SHIFT LEFT_BRACKET &kp SPACE &mt LEFT_ALT ESC    &td_layer  &just_bkspc  &kp RIGHT_BRACKET  &lt FUNC BSPC  &kp HOME
+            &grave_tog  &kp Q  &kp W  &kp E &kp R &kp T                                                                  &kp Y  &kp U     &kp I  &kp O    &kp P     &kp BSLH
+            &mt LEFT_CONTROL TAB    &kp A  &kp S  &kp D &kp F &kp G                                                                      &h_left &j_down &k_up &l_right &kp SEMI  &lt FUNC SQT
+            &kp MINUS  &kp Z  &kp X  &kp C &kp V &kp B  &trans   &kp RIGHT_CONTROL  &trans &sl_tog &kp N     &kp M     &kp COMMA  &kp DOT  &kp FSLH  &kp EQUAL
+                    &kp C_MUTE  &ctrl_gui &mt LEFT_SHIFT LEFT_BRACKET &kp SPACE &mt LEFT_ALT ESC    &td_layer  &just_bkspc  &kp RIGHT_BRACKET  &lt FUNC BSPC  &kp HOME
             >;
 
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp UP DOWN>;
