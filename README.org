@@ -43,80 +43,56 @@ combos {
 
 - `ctrl_gui`: This is a tap-dance operation where the key sends a left control `&kp LEFT_CONTROL` on a single tap and left GUI (likely refer to Win/Command key) `&kp LGUI` on double-tap.
 
-- `td_to_func`: This is a tap-dance operation where the key sends a Return key `&mt RIGHT_SHIFT RET` when right shift is held and toggles to the function layer `&tog FUNC` on second tap.
-
-- `td_to_symbol`: Similar to `td_to_func`, the key sends a Return key `&mt RIGHT_SHIFT RET` when right shift is held and toggles to the symbol layer `&tog SYM` on second tap.
-
-- `td_layer`: Mod-morphing operation on `&td_to_func` and `&td_to_symbol` with shift or alt held down. This works on tap-dance operation and toggles different layers depending on whether shift or alt is engaged.
-
 #+NAME: behaviors
 #+BEGIN_SRC C :noweb no-export :tangle yes
 behaviors {
         clear_tog: clear_toggle {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&bt BT_CLR>, <&tog FUNC>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&bt BT_CLR>, <&tog FUNC>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
         };
         just_bkspc: just_bkspc {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&mt RIGHT_CONTROL BACKSPACE>, <&kp BACKSPACE>;
-            mods = <(MOD_LSFT)>;
-            };
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&mt RIGHT_CONTROL BACKSPACE>, <&kp BACKSPACE>;
+        mods = <(MOD_LSFT)>;
+        };
         grave_tog: grave_toggle {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp GRAVE>, <&tog FUNC>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-            };
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&kp GRAVE>, <&tog FUNC>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
         sl_tog: sticky_layer_toggle {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&sl FUNC>, <&tog FUNC>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-            };
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&sl FUNC>, <&tog FUNC>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
         hspc: holdable_backspace {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&mt RIGHT_CONTROL BACKSPACE>, <&kp BACKSPACE>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-            };
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&mt RIGHT_CONTROL BACKSPACE>, <&kp BACKSPACE>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
         down_p_down: down_and_page_down {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp DOWN>, <&kp PAGE_DOWN>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-            };
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&kp DOWN>, <&kp PAGE_DOWN>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
         up_p_up: up_and_page_up {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp UP>, <&kp PAGE_UP>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-            };
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&kp UP>, <&kp PAGE_UP>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
         ctrl_gui: left_ctrl_gui {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp LEFT_CONTROL>, <&kp LGUI>;
-        };
-        td_to_func: dance_switch_to_func {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mt RIGHT_SHIFT RET>, <&tog FUNC>;
-        };
-        td_to_symbol: dance_switch_to_symbol {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mt RIGHT_SHIFT RET>, <&tog SYM>;
-        };
-        td_layer: dance_morph_layer {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&td_to_func>, <&td_to_symbol>;
-            mods = <(MOD_LSFT|MOD_RSFT|MOD_LALT)>;
+        compatible = "zmk,behavior-tap-dance";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&kp LEFT_CONTROL>, <&kp LGUI>;
         };
 };
 #+END_SRC
@@ -128,48 +104,48 @@ keymap {
         compatible = "zmk,keymap";
 
         default_layer {
-            // ---------------------------------------------------------------------------------------------------------------------------------
-            // | GRAVE |  Q  |  W  |  E   |  R   |  T   |                                    |  Y   |  U    |  I    |  O   |  P   |   \   |
-            // | FUNC+TAB |  A  |  S  |  D   |  F   |  G   |                                 |  H   |  J    |  K    |  L   |   ;   |   '   |
-            // | MINUS |  Z  |  X  |  C   |  V   |  B   | TRANS | L_SHIFT | TRANS | LAYER 1     |  N   |  M    |  ,    |  .   |   /   | EQUAL |
-            //               | MUTE | CTRL/GUI | L_SHIFT+[ |SPACE | L_ALT+ESC | TD_LAYER |   DEL   |   ]   | FUNC+BSPC  | HOME |
+        // ---------------------------------------------------------------------------------------------------------------------------------
+        // | GRAVE |  Q  |  W  |  E   |  R   |  T   |                                    |  Y   |  U    |  I    |  O   |  P   |   \   |
+        // | FUNC+TAB |  A  |  S  |  D   |  F   |  G   |                                 |  H   |  J    |  K    |  L   |   ;   |   '   |
+        // | MINUS |  Z  |  X  |  C   |  V   |  B   | TRANS | L_SHIFT | TRANS | LAYER 1     |  N   |  M    |  ,    |  .   |   /   | EQUAL |
+        //               | MUTE | CTRL/GUI | L_SHIFT+[ |SPACE | L_ALT+ESC | TD_LAYER |   DEL   |   ]   | FUNC+BSPC  | HOME |
 
-            bindings = <
-            &kp GRAVE  &kp Q  &kp W  &kp E &kp R &kp T                                                                  &kp Y  &kp U     &kp I  &kp O    &kp P     &kp BSLH
-            &lt FUNC TAB    &kp A  &kp S  &kp D &kp F &kp G                                                              &kp H &kp J &kp K &kp L &kp SEMI  &lt FUNC SQT
-            &kp MINUS  &kp Z  &kp X  &kp C &kp V &kp B  &trans   &kp LEFT_SHIFT  &trans &sl_tog &kp N     &kp M     &kp COMMA  &kp DOT  &kp FSLH  &kp EQUAL
-                    &kp C_MUTE  &ctrl_gui &mt LEFT_SHIFT LEFT_BRACKET &kp SPACE &mt LEFT_ALT ESC    &td_layer  &just_bkspc  &kp RIGHT_BRACKET  &lt FUNC BSPC  &kp HOME
-            >;
-            sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp UP DOWN>;
+        bindings = <
+        &kp GRAVE  &kp Q  &kp W  &kp E &kp R &kp T                                                                  &kp Y  &kp U     &kp I  &kp O    &kp P     &kp BSLH
+        &lt FUNC TAB    &kp A  &kp S  &kp D &kp F &kp G                                                              &kp H &kp J &kp K &kp L &kp SEMI  &lt FUNC SQT
+        &kp MINUS  &kp Z  &kp X  &kp C &kp V &kp B  &trans   &kp LEFT_SHIFT  &trans &sl_tog &kp N     &kp M     &kp COMMA  &kp DOT  &kp FSLH  &kp EQUAL
+                &kp C_MUTE  &ctrl_gui &mt LEFT_SHIFT LEFT_BRACKET &kp SPACE &mt LEFT_ALT ESC    &kp RET  &just_bkspc  &mt RIGHT_SHIFT RIGHT_BRACKET  &lt FUNC BSPC  &kp HOME
+        >;
+        sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp UP DOWN>;
         };
 
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    // | GRAVE |  1  |  2  |  3   |  4  |  5  |                                          | MEDIA REWIND | MEDIA PLAY_PAUSE | MEDIA FAST-FORWARD |  -    |  -    | -   |
-    // |  TAB  |  6  |  7  |  8   |  9  |  0  |                                          | LEFT ARROW  | MOUSE SCROLL DOWN | MOUSE SCROLL UP | RIGHT ARROW  |  -   |  -   |
-    // | - | BT CLEAR | BT PREV | BT NEXT | BT SEL | 0|                                                     |  TOGGLE  |  BRIGHTNESS DOWN  | BRIGHTNESS UP   |  BRIGHTNESS AUTO | -  |  -  |
-    //                     | MUTE | GUI  | L_SHIFT+[ |  SPACE | ALT + ESC |  |  DELETE  | BSPC  | R_SHIFT  | R-ALT |
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// | GRAVE |  1  |  2  |  3   |  4  |  5  |                                          | MEDIA REWIND | MEDIA PLAY_PAUSE | MEDIA FAST-FORWARD |  -    |  -    | -   |
+// |  TAB  |  6  |  7  |  8   |  9  |  0  |                                          | LEFT ARROW  | MOUSE SCROLL DOWN | MOUSE SCROLL UP | RIGHT ARROW  |  -   |  -   |
+// | - | BT CLEAR | BT PREV | BT NEXT | BT SEL | 0|                                                     |  TOGGLE  |  BRIGHTNESS DOWN  | BRIGHTNESS UP   |  BRIGHTNESS AUTO | -  |  -  |
+//                     | MUTE | GUI  | L_SHIFT+[ |  SPACE | ALT + ESC |  |  DELETE  | BSPC  | R_SHIFT  | R-ALT |
         func_layer {
-            bindings = <
-               &kp GRAVE  &kp NUM_1 &kp NUM_2   &kp NUM_3    &kp NUM_4 &kp NUM_5                                &kp C_RW    &kp C_PP     &kp C_FF   &trans  &trans  &trans
-               &kp TAB &kp NUM_6  &kp NUM_7  &kp NUM_8  &kp NUM_9 &kp NUM_0                      &kp LEFT    &down_p_down &up_p_up &kp RIGHT   &trans  &trans
-            &trans  &bt BT_CLR  &bt BT_PRV &bt BT_NXT   &bt BT_SEL 0 &kp NUMBER_0 &trans &trans       &trans  &tog FUNC  &kp C_BRI_DN  &kp C_BRI_UP  &kp C_BRI_AUTO  &trans  &trans  &trans
-                    &kp C_MUTE  &ctrl_gui &mt LEFT_SHIFT LEFT_BRACKET &kp SPACE &mt LEFT_ALT ESC    &td_layer  &just_bkspc  &kp RIGHT_BRACKET  &lt FUNC BSPC  &kp HOME
-            >;
+        bindings = <
+                &kp GRAVE  &kp NUM_1 &kp NUM_2   &kp NUM_3    &kp NUM_4 &kp NUM_5                                &kp C_RW    &kp C_PP     &kp C_FF   &trans  &trans  &trans
+                &kp TAB &kp NUM_6  &kp NUM_7  &kp NUM_8  &kp NUM_9 &kp NUM_0                      &kp LEFT    &down_p_down &up_p_up &kp RIGHT   &trans  &trans
+        &trans  &bt BT_CLR  &bt BT_PRV &bt BT_NXT   &bt BT_SEL 0 &kp NUMBER_0 &trans &trans       &trans  &tog FUNC  &kp C_BRI_DN  &kp C_BRI_UP  &kp C_BRI_AUTO  &trans  &trans  &trans
+                &kp C_MUTE  &ctrl_gui &mt LEFT_SHIFT LEFT_BRACKET &kp SPACE &mt LEFT_ALT ESC    &kp RET  &just_bkspc  &mt RIGHT_SHIFT RIGHT_BRACKET  &lt FUNC BSPC  &kp HOME
+        >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp UP DOWN>;
         };
         symbol_layer {
-            bindings = <
-               &bt BT_CLR  &bt BT_PRV &kp W   &bt BT_NXT    &bt BT_SEL 0 &bt BT_DISC 0                &kp C_RW    &kp C_PP     &kp C_FF   &trans  &trans  &trans
+        bindings = <
+                &bt BT_CLR  &bt BT_PRV &kp W   &bt BT_NXT    &bt BT_SEL 0 &bt BT_DISC 0                &kp C_RW    &kp C_PP     &kp C_FF   &trans  &trans  &trans
                 &kp TAB &kp EXCLAMATION  &kp AT_SIGN  &kp HASH &kp DOLLAR &kp PERCENT                      &kp LEFT    &kp DOWN     &kp UP      &kp RIGHT   &trans  &trans
-               &trans  &kp CARET &kp AMPERSAND &kp STAR &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &trans &trans       &trans  &tog SYM  &kp C_BRI_DN  &kp C_BRI_UP  &kp C_BRI_AUTO  &trans  &trans  &trans
-                       &kp C_MUTE        &trans       &kp LEFT_SHIFT &kp SPACE  &lt LEFT_ALT ESC                   &td_layer  &lt RIGHT_CONTROL BSPC  &trans  &trans  &kp HOME
-            >;
+                &trans  &kp CARET &kp AMPERSAND &kp STAR &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &trans &trans       &trans  &tog SYM  &kp C_BRI_DN  &kp C_BRI_UP  &kp C_BRI_AUTO  &trans  &trans  &trans
+                        &kp C_MUTE        &trans       &kp LEFT_SHIFT &kp SPACE  &lt LEFT_ALT ESC                   &kp RET  &lt RIGHT_CONTROL BSPC  &trans  &trans  &kp HOME
+        >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp UP DOWN>;
         };
 
-    };
+};
 #+END_SRC
 
 #+RESULTS: bindings
@@ -209,4 +185,54 @@ The fw builds can be loaded on the the board if it is connected via usb and put 
 Once this is done the fw can be loaded by copying the files over like so:
 #+begin_src sh
 cp ../build/left/zephyr/zmk.uft /media/${USER}/NICENANO
+#+end_src
+
+* Issues:
+
+** Left encoder doesn't produce desired behavior despite emitting data
+Despite configuring both sides to emit page up and down only actuation on the right side results in the desired behaviour.
+The following is the serial output when articulating for the left and right side
+*** Left side
+#+begin_src shell
+[00:09:01.567,382] <dbg> zmk: zmk_keymap_sensor_event: layer: 2 sensor_index: 0, binding name: enc_key_press
+[00:09:01.567,443] <dbg> zmk: zmk_behavior_sensor_rotate_common_accept_data: val1: -4, val2: -500000, remainder: -4/-500000 triggers: 0 inc keycode 0x70052 dec keycode 0x70051
+[00:09:01.567,535] <dbg> zmk: zmk_keymap_sensor_event: layer: 1 sensor_index: 0, binding name: enc_key_press
+[00:09:01.567,565] <dbg> zmk: zmk_behavior_sensor_rotate_common_accept_data: val1: -4, val2: -500000, remainder: -4/-500000 triggers: 0 inc keycode 0x70052 dec keycode 0x70051
+[00:09:01.567,626] <dbg> zmk: zmk_keymap_sensor_event: layer: 0 sensor_index: 0, binding name: enc_key_press
+[00:09:01.567,687] <dbg> zmk: zmk_behavior_sensor_rotate_common_accept_data: val1: -4, val2: -500000, remainder: -4/-500000 triggers: 0 inc keycode 0x70052 dec keycode 0x70051
+#+end_src
+
+*** Right side
+#+begin_src shell
+[00:08:42.079,650] <dbg> zmk: split_central_sensor_notify_func: [SENSOR NOTIFICATION] data 0x2000f7db length 12
+[00:08:42.079,742] <dbg> zmk: peripheral_sensor_event_work_callback: Trigger sensor change for 1
+[00:08:42.079,833] <dbg> zmk: zmk_keymap_sensor_event: layer: 2 sensor_index: 1, binding name: enc_key_press
+[00:08:42.079,895] <dbg> zmk: zmk_behavior_sensor_rotate_common_accept_data: val1: 4, val2: 500000, remainder: 0/0 triggers: 1 inc keycode 0x70052 dec keycode 0x70051
+[00:08:42.079,986] <dbg> zmk: zmk_keymap_sensor_event: layer: 1 sensor_index: 1, binding name: enc_key_press
+[00:08:42.080,017] <dbg> zmk: zmk_behavior_sensor_rotate_common_accept_data: val1: 4, val2: 500000, remainder: 0/0 triggers: 1 inc keycode 0x70052 dec keycode 0x70051
+[00:08:42.080,078] <dbg> zmk: zmk_keymap_sensor_event: layer: 0 sensor_index: 1, binding name: enc_key_press
+[00:08:42.080,139] <dbg> zmk: zmk_behavior_sensor_rotate_common_accept_data: val1: 4, val2: 500000, remainder: 0/0 triggers: 1 inc keycode 0x70052 dec keycode 0x70051
+[00:08:42.080,169] <dbg> zmk: zmk_behavior_sensor_rotate_common_process: Sensor binding: enc_key_press
+[00:08:42.080,230] <dbg> zmk: behavior_queue_process_next: Invoking key_press: 0x70052 0x00
+[00:08:42.080,261] <dbg> zmk: on_keymap_binding_pressed: position 0 keycode 0x70052
+[00:08:42.080,291] <dbg> zmk: hid_listener_keycode_pressed: usage_page 0x07 keycode 0x52 implicit_mods 0x00 explicit_mods 0x00
+[00:08:42.080,291] <dbg> zmk: zmk_hid_implicit_modifiers_press: Modifiers set to 0x00
+[00:08:42.080,322] <dbg> zmk: zmk_endpoints_send_report: usage page 0x07
+[00:08:42.080,383] <dbg> zmk: behavior_queue_process_next: Processing next queued behavior in 5ms
+[00:08:42.080,444] <dbg> zmk: zmk_keymap_sensor_event: sensor event processing complete, behavior response was opaque
+[00:08:42.081,207] <dbg> zmk: vddh_sample_fetch: ADC raw 2994 ~ 4385 mV => 100%
+[00:08:42.085,479] <dbg> zmk: behavior_queue_process_next: Invoking key_press: 0x70052 0x00
+[00:08:42.085,479] <dbg> zmk: on_keymap_binding_released: position 0 keycode 0x70052
+[00:08:42.085,510] <dbg> zmk: hid_listener_keycode_released: usage_page 0x07 keycode 0x52 implicit_mods 0x00 explicit_mods 0x00
+[00:08:42.085,540] <dbg> zmk: zmk_hid_implicit_modifiers_release: Modifiers set to 0x00
+[00:08:42.085,540] <dbg> zmk: zmk_endpoints_send_report: usage page 0x07
+[00:08:42.085,601] <dbg> zmk: behavior_queue_process_next: Processing next queued behavior in 0ms
+[00:08:42.132,171] <dbg> zmk: split_central_sensor_notify_func: [SENSOR NOTIFICATION] data 0x2000f7db length 12
+[00:08:42.132,232] <dbg> zmk: peripheral_sensor_event_work_callback: Trigger sensor change for 1
+[00:08:42.132,293] <dbg> zmk: zmk_keymap_sensor_event: layer: 2 sensor_index: 1, binding name: enc_key_press
+[00:08:42.132,354] <dbg> zmk: zmk_behavior_sensor_rotate_common_accept_data: val1: 4, val2: 500000, remainder: 4/500000 triggers: 0 inc keycode 0x70052 dec keycode 0x70051
+[00:08:42.132,415] <dbg> zmk: zmk_keymap_sensor_event: layer: 1 sensor_index: 1, binding name: enc_key_press
+[00:08:42.132,446] <dbg> zmk: zmk_behavior_sensor_rotate_common_accept_data: val1: 4, val2: 500000, remainder: 4/500000 triggers: 0 inc keycode 0x70052 dec keycode 0x70051
+[00:08:42.132,537] <dbg> zmk: zmk_keymap_sensor_event: layer: 0 sensor_index: 1, binding name: enc_key_press
+[00:08:42.132,568] <dbg> zmk: zmk_behavior_sensor_rotate_common_accept_data: val1: 4, val2: 500000, remainder: 4/500000 triggers: 0 inc keycode 0x70052 dec keycode 0x70051
 #+end_src
